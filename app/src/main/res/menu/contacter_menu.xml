@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+	<item
+        android:id="@+id/menu_add_subscriber"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="@string/add_friends">
+
+    </item>
+	<item
+        android:id="@+id/menu_modify_state"
+        android:icon="@android:drawable/ic_menu_upload"
+        android:title="@string/update_stutas">
+
+    </item>
+	<item
+        android:id="@+id/menu_relogin"
+        android:icon="@android:drawable/ic_menu_rotate"
+        android:title="@string/new_login">
+
+    </item>
+
+
+ 	<item
+        android:id="@+id/menu_exit"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:title="@string/exit_login">
+
+    </item>
+</menu>

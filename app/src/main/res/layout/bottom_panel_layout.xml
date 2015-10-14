@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<im.summerhao.com.myapplication.ui.BottomControlPanel xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_alignParentBottom="true"
+    android:gravity="center_vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
+
+    <im.summerhao.com.myapplication.ui.ImageText
+        android:id="@+id/btn_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true" />
+
+    <im.summerhao.com.myapplication.ui.ImageText
+        android:id="@+id/btn_contacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/btn_message" />
+
+    <im.summerhao.com.myapplication.ui.ImageText
+        android:id="@+id/btn_news"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/btn_contacts" />
+
+    <im.summerhao.com.myapplication.ui.ImageText
+        android:id="@+id/btn_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true" />
+
+</im.summerhao.com.myapplication.ui.BottomControlPanel>
