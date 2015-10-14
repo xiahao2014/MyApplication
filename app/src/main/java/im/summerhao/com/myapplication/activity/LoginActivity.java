@@ -183,8 +183,6 @@ public class LoginActivity extends ActivitySupport implements CompoundButton.OnC
                     LoginTask loginTask = new LoginTask(LoginActivity.this,
                             loginConfig);
                     loginTask.execute();
-
-                    finish();
                 }
                 break;
 

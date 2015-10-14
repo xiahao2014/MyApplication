@@ -73,7 +73,7 @@
 
     <!-- 缺省的服务器配置 -->
     <integer name="xmpp_port">5222</integer>
-    <string name="xmpp_host">192.168.10.119</string>
+    <string name="xmpp_host">192.168.1.101</string>
     <string name="xmpp_service_name">wangxc</string>
 
     <bool name="is_remember">true</bool>

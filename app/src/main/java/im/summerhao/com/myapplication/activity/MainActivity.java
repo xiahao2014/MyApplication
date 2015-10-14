@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -26,8 +25,9 @@ import im.summerhao.com.myapplication.fragment.BaseFragment;
 import im.summerhao.com.myapplication.manager.ContacterManager;
 import im.summerhao.com.myapplication.manager.XmppConnectionManager;
 import im.summerhao.com.myapplication.ui.BottomControlPanel;
+import im.summerhao.com.myapplication.ui.HeadControlPanel;
 
-public class MainActivity extends AppCompatActivity implements BottomControlPanel.BottomPanelCallback {
+public class MainActivity extends ActivitySupport implements BottomControlPanel.BottomPanelCallback {
 
     private List<ChartHisBean> inviteNotices = new ArrayList<ChartHisBean>();
     private List<DiscoverItems.Item> chatRoomList = new ArrayList<DiscoverItems.Item>();
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements BottomControlPane
     private List<String> roomNames = new ArrayList<String>();
 
     BottomControlPanel bottomPanel = null;
+    HeadControlPanel headPanel = null;
     public static String currFragTag = "";
 
     private FragmentManager fragmentManager = null;
@@ -60,6 +61,10 @@ public class MainActivity extends AppCompatActivity implements BottomControlPane
         if (bottomPanel != null) {
             bottomPanel.initBottomPanel();
             bottomPanel.setBottomCallback(this);
+        }
+        headPanel = (HeadControlPanel)findViewById(R.id.head_layout);
+        if(headPanel != null){
+            headPanel.initHeadPanel();
         }
 
     }
@@ -118,6 +123,13 @@ public class MainActivity extends AppCompatActivity implements BottomControlPane
 
     }
 
+    /**
+     * 先判断这个fragment是不是被detach掉的，如果是的话意味着之前曾被add过，
+     * 所以只需attach就ok了。否则的话，意味着这是第一次，进行add.这里记录下
+     * @param layout
+     * @param f
+     * @param tag
+     */
     private void attachFragment(int layout, Fragment f, String tag) {
         if (f != null) {
             if (f.isDetached()) {
@@ -217,6 +229,10 @@ public class MainActivity extends AppCompatActivity implements BottomControlPane
             tag = Constant.FRAGMENT_FLAG_SETTING;
         }
         setTabSelection(tag); //切换Fragment
-        // headPanel.setMiddleTitle(tag);//切换标题
+        headPanel.setMiddleTitle(tag);//切换标题
+    }
+    @Override
+    public void onBackPressed() {
+        isExit();
     }
 }

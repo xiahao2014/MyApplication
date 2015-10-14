@@ -17,7 +17,7 @@ public class HeadControlPanel extends RelativeLayout {
 	private TextView mRightTitle;
 	private static final float middle_title_size = 20f;
 	private static final float right_title_size = 17f;
-	private static final int default_background_color = Color.rgb(21, 126, 203);
+	private static final int default_background_color = Color.rgb(128, 203, 196);
 
 
 	public HeadControlPanel(Context context, AttributeSet attrs) {
