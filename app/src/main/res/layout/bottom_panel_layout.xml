@@ -19,11 +19,11 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/btn_message" />
 
-    <im.summerhao.com.myapplication.ui.ImageText
+   <!-- <im.summerhao.com.myapplication.ui.ImageText
         android:id="@+id/btn_news"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/btn_contacts" />
+        android:layout_toRightOf="@id/btn_contacts" />-->
 
     <im.summerhao.com.myapplication.ui.ImageText
         android:id="@+id/btn_setting"

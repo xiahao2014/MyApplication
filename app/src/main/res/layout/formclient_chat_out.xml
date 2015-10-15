@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/formclient_row_userid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold" 
+            android:textColor="@color/chat_title_bg"
+            android:text="好友" />
+
+        <TextView
+            android:id="@+id/formclient_row_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5.0dp"
+            android:layout_marginRight="20.0dip"
+            android:text="时间"
+            android:textColor="#FF666666" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:paddingBottom="3.0dip"
+        android:paddingLeft="10.0dip"
+        android:paddingTop="3.0dip" >
+
+        <ImageView
+            android:id="@+id/from_head"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dip"
+            android:src="@drawable/head0"
+            android:textColor="#FF000000"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/formclient_row_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/from_head"
+            android:background="@drawable/outgoing"
+            android:textColor="#FF000000"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -22,7 +22,7 @@ public class BottomControlPanel extends RelativeLayout implements View.OnClickLi
     private Context mContext;
     private ImageText mMsgBtn = null;
     private ImageText mContactsBtn = null;
-    private ImageText mNewsBtn = null;
+    //private ImageText mNewsBtn = null;
     private ImageText mSettingBtn = null;
     private int DEFALUT_BACKGROUND_COLOR = Color.rgb(243, 243, 243); //Color.rgb(192, 192, 192)
     private BottomPanelCallback mBottomCallback = null;
@@ -39,12 +39,12 @@ public class BottomControlPanel extends RelativeLayout implements View.OnClickLi
         // TODO Auto-generated method stub
         mMsgBtn = (ImageText)findViewById(R.id.btn_message);
         mContactsBtn = (ImageText)findViewById(R.id.btn_contacts);
-        mNewsBtn = (ImageText)findViewById(R.id.btn_news);
+        //mNewsBtn = (ImageText)findViewById(R.id.btn_news);
         mSettingBtn = (ImageText)findViewById(R.id.btn_setting);
         setBackgroundColor(DEFALUT_BACKGROUND_COLOR);
         viewList.add(mMsgBtn);
         viewList.add(mContactsBtn);
-        viewList.add(mNewsBtn);
+       // viewList.add(mNewsBtn);
         viewList.add(mSettingBtn);
 
     }
@@ -57,10 +57,10 @@ public class BottomControlPanel extends RelativeLayout implements View.OnClickLi
             mContactsBtn.setImage(R.drawable.message);
             mContactsBtn.setText("联系人");
         }
-        if(mNewsBtn != null){
-            mNewsBtn.setImage(R.drawable.message);
-            mNewsBtn.setText("新闻");
-        }
+//        if(mNewsBtn != null){
+//            mNewsBtn.setImage(R.drawable.message);
+//            mNewsBtn.setText("新闻");
+//        }
         if(mSettingBtn != null){
             mSettingBtn.setImage(R.drawable.message);
             mSettingBtn.setText("设置");
@@ -94,10 +94,10 @@ public class BottomControlPanel extends RelativeLayout implements View.OnClickLi
                 index = Constant.BTN_FLAG_CONTACTS;
                 mContactsBtn.setChecked(Constant.BTN_FLAG_CONTACTS);
                 break;
-            case R.id.btn_news:
-                index = Constant.BTN_FLAG_NEWS;
-                mNewsBtn.setChecked(Constant.BTN_FLAG_NEWS);
-                break;
+//            case R.id.btn_news:
+//                index = Constant.BTN_FLAG_NEWS;
+//                mNewsBtn.setChecked(Constant.BTN_FLAG_NEWS);
+//                break;
             case R.id.btn_setting:
                 index = Constant.BTN_FLAG_SETTING;
                 mSettingBtn.setChecked(Constant.BTN_FLAG_SETTING);
@@ -110,7 +110,7 @@ public class BottomControlPanel extends RelativeLayout implements View.OnClickLi
     }
     public void defaultBtnChecked(){
         if(mMsgBtn != null){
-            mMsgBtn.setChecked(Constant.BTN_FLAG_MESSAGE);
+            mContactsBtn.setChecked(Constant.BTN_FLAG_CONTACTS);
         }
     }
     @Override

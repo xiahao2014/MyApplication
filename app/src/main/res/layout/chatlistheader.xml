@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/buttonChatHistory"
+        android:layout_width="fill_parent"
+        android:layout_height="42.0dip"
+        android:layout_gravity="center"
+        android:layout_marginBottom="3.0dip"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginRight="10.0dip"
+        android:layout_marginTop="10.0dip"
+        android:background="@drawable/chat_history_bg_selector"
+        android:gravity="center"
+        android:text="@string/chat_check_history"
+        android:textColor="@color/chat_list_header_text"
+        android:textSize="16.0sp"
+        android:visibility="visible" />
+</LinearLayout>

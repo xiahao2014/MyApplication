@@ -22,6 +22,7 @@ import android.widget.Toast;
 import im.summerhao.com.myapplication.R;
 import im.summerhao.com.myapplication.comm.Constant;
 import im.summerhao.com.myapplication.mode.LoginConfig;
+import im.summerhao.com.myapplication.service.IMChatService;
 import im.summerhao.com.myapplication.service.IMContactService;
 
 public class ActivitySupport extends AppCompatActivity implements IActivitySupport {
@@ -87,9 +88,9 @@ public class ActivitySupport extends AppCompatActivity implements IActivitySuppo
         // 好友联系人服务
         Intent server = new Intent(context, IMContactService.class);
         context.startService(server);
-//        // 聊天服务
-//        Intent chatServer = new Intent(context, IMChatService.class);
-//        context.startService(chatServer);
+        // 聊天服务
+        Intent chatServer = new Intent(context, IMChatService.class);
+        context.startService(chatServer);
 //        // 自动恢复连接服务
 //        Intent reConnectService = new Intent(context, ReConnectService.class);
 //        context.startService(reConnectService);
@@ -103,12 +104,14 @@ public class ActivitySupport extends AppCompatActivity implements IActivitySuppo
     @Override
     public void stopService() {
 
-//        // 好友联系人服务
-//        Intent server = new Intent(context, IMContactService.class);
-//        context.stopService(server);
-//        // 聊天服务
-//        Intent chatServer = new Intent(context, IMChatService.class);
-//        context.stopService(chatServer);
+        // 好友联系人服务
+        Intent server = new Intent(context, IMContactService.class);
+        context.stopService(server);
+        // 聊天服务
+        Intent chatServer = new Intent(context, IMChatService.class);
+        context.stopService(chatServer);
+
+
 //        // 自动恢复连接服务
 //        Intent reConnectService = new Intent(context, ReConnectService.class);
 //        context.stopService(reConnectService);
@@ -226,7 +229,10 @@ public class ActivitySupport extends AppCompatActivity implements IActivitySuppo
                             }).create().show();
         }
     }
-    /** 打开无线网络设置界面 */
+
+    /**
+     * 打开无线网络设置界面
+     */
     public void openWirelessSet() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
         dialogBuilder
@@ -263,7 +269,10 @@ public class ActivitySupport extends AppCompatActivity implements IActivitySuppo
     public void showToast(String text) {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
     }
-    /** 关闭键盘事件 */
+
+    /**
+     * 关闭键盘事件
+     */
     public void closeInput() {
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if (inputMethodManager != null && this.getCurrentFocus() != null) {
@@ -271,7 +280,6 @@ public class ActivitySupport extends AppCompatActivity implements IActivitySuppo
                     .getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
-
 
 
     @Override
@@ -291,12 +299,11 @@ public class ActivitySupport extends AppCompatActivity implements IActivitySuppo
                 .apply();
 
 
-
         preferences.edit()
                 .putInt(Constant.XMPP_PORT, loginConfig.getXmppPort())
                 .apply();
         preferences.edit()
-                .putString(Constant.XMPP_SEIVICE_NAME,loginConfig.getXmppServiceName())
+                .putString(Constant.XMPP_SEIVICE_NAME, loginConfig.getXmppServiceName())
                 .apply();
         preferences.edit()
                 .putString(Constant.USERNAME, loginConfig.getUsername())

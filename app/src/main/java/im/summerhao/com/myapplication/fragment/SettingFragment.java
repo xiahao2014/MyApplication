@@ -29,6 +29,4 @@ public class SettingFragment extends BaseFragment {
 		MainActivity.currFragTag = Constant.FRAGMENT_FLAG_SETTING;
 
 	}
-
-
 }

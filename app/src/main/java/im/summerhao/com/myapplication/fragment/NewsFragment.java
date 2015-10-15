@@ -28,5 +28,4 @@ public class NewsFragment extends BaseFragment {
 		MainActivity.currFragTag = Constant.FRAGMENT_FLAG_NEWS;
 	}
 
-
 }

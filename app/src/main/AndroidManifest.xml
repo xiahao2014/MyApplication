@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="im.summerhao.com.myapplication" >
+    package="im.summerhao.com.myapplication">
 
     <!-- 访问Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -18,16 +18,18 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".activity.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
+
         </activity>
         <activity
             android:name=".activity.ActivitySupport"
-            android:label="@string/title_activity_activity_support" >
+            android:label="@string/title_activity_activity_support">
+
         </activity>
-        <activity android:name=".activity.LoginActivity" >
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,13 +38,21 @@
         </activity>
         <activity
             android:name=".activity.RegisterActivity"
-            android:label="@string/title_activity_register" >
+            android:label="@string/title_activity_register">
+
+        </activity>
+        <activity android:name=".activity.ChatActivity">
+
         </activity>
 
         <service
             android:name=".service.IMContactService"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true">
+
+        </service>
+        <service android:name=".service.IMChatService">
+
         </service>
     </application>
 
