@@ -128,7 +128,7 @@ public class IMChatService extends Service {
                     intent.putExtra(IMMessage.IMMESSAGE_KEY, msg);
                     intent.putExtra("notice", notice);
                     sendBroadcast(intent);
-                    setNotiType(R.drawable.im,getResources().getString(R.string.new_message),
+                    setNotiType(R.drawable.ic_launcher,getResources().getString(R.string.new_message),
                             notice.getContent(), ChatActivity.class, from);
                 }
             }
