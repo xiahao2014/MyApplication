@@ -114,6 +114,7 @@ public class ContacterManager {
         user.setSize(entry.getGroups().size());
         user.setAvailable(presence.isAvailable());
         user.setType(entry.getType());
+
         return user;
     }
 

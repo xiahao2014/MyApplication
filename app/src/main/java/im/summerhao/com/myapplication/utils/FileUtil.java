@@ -1,6 +1,16 @@
 package im.summerhao.com.myapplication.utils;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Environment;
+import android.util.Log;
+
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -10,10 +20,12 @@ import java.io.InputStream;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
 import java.io.Reader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import android.util.Log;
+import im.summerhao.com.myapplication.activity.IMApplication;
 
 /** 文件工具类 */
 public class FileUtil {
@@ -258,6 +270,65 @@ public class FileUtil {
 		}
 		System.out.println("string=" + string);
 		return string.toString();
+	}
+
+	/**
+	 * 获取拍照文件
+	 * @return
+	 *      拍照文件
+	 */
+	public static File getCameraFile() {
+		// 使用系统当前日期加以调整作为照片的名称
+		Date date = new Date(System.currentTimeMillis());
+		SimpleDateFormat dateFormat = new SimpleDateFormat("'IMG'_yyyyMMdd_HHmmss");
+		// 拍照文件
+		return new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), dateFormat.format(date) + ".jpg");
+	}
+
+	/**
+	 * 启动系统裁剪
+	 * @param activity
+	 * @param data
+	 * @param picCode
+	 */
+	public static void doCropPhoto(Activity activity, Uri data, int picCode) {
+		Intent intent = getCropImageIntent(data);
+		activity.startActivityForResult(intent, picCode);
+	}
+	public static Intent getCropImageIntent(Uri uri) {
+		Intent intent = new Intent("com.android.camera.action.CROP");
+		intent.setDataAndType(uri, "image/*");
+		// crop为true是设置在开启的intent中设置显示的view可以剪裁
+		intent.putExtra("crop", "true");
+		// aspectX aspectY 是宽高的比例
+		intent.putExtra("aspectX", 1);
+		intent.putExtra("aspectY", 1);
+		// outputX,outputY 是剪裁图片的宽高
+		intent.putExtra("outputX", 400);
+		intent.putExtra("outputY", 400);
+		intent.putExtra("return-data", true);
+		intent.putExtra("noFaceDetection", true);
+		return intent;
+	}
+
+	/**
+	 * Bitmap转byte[]
+	 * @param bitmap
+	 *          要转换的bitmap文件
+	 * @return
+	 *          转换好的byte[]
+	 */
+	public static byte[] Bitmap2Bytes(Bitmap bitmap) {
+		if (bitmap == null) {
+			return null;
+		}
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+		return baos.toByteArray();
+	}
+
+	public static Drawable Bitmap2Drawable(Bitmap bitmap) {
+		return new BitmapDrawable(IMApplication.im.getResources(), bitmap);
 	}
 
 }

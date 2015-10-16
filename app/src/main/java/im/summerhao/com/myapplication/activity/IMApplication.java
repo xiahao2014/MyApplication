@@ -15,6 +15,13 @@ import im.summerhao.com.myapplication.manager.XmppConnectionManager;
 public class IMApplication extends Application{
 
     private List<Activity> activityList = new LinkedList<Activity>();
+    public static IMApplication im;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        im = this;
+    }
 
     // 添加Activity到容器中
     public void addActivity(Activity activity) {

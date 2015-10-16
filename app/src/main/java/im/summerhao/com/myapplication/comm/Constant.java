@@ -118,7 +118,6 @@ public class Constant {
      */
     /**
      * 重连接状态acttion
-     *
      */
     public static final String ACTION_RECONNECT_STATE = "action_reconnect_state";
     /**

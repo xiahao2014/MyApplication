@@ -1,47 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="60dip"
-        android:background="@drawable/mmfooter_bg"
-        android:gravity="center_vertical" >
+    <!--    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="60dip"
+            android:background="@drawable/mmfooter_bg"
+            android:gravity="center_vertical" >
 
-        <ImageButton
-            android:id="@+id/title_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/title_btn_l_selector"
-            android:padding="0.0dip"
-            android:src="@drawable/title_btn_back" />
+            <ImageButton
+                android:id="@+id/title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/title_btn_l_selector"
+                android:padding="0.0dip"
+                android:src="@drawable/title_btn_back" />
+
+            <TextView
+                android:id="@+id/to_chat_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="张三"
+                android:textColor="#ffffffff"
+                android:textSize="18.0sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/user_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/title_btn_r_selector"
+                android:padding="0.0dip"
+                android:src="@drawable/popbar_icon_info" />
+        </LinearLayout>-->
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
 
         <TextView
             android:id="@+id/to_chat_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="张三"
-            android:textColor="#ffffffff"
-            android:textSize="18.0sp"
-            android:textStyle="bold" />
+            android:layout_gravity="center"
+            android:text="zhangsan"
+            android:textColor="@color/blue"
+            android:textSize="22sp" />
+    </android.support.v7.widget.Toolbar>
 
-        <ImageButton
-            android:id="@+id/user_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/title_btn_r_selector"
-            android:padding="0.0dip"
-            android:src="@drawable/popbar_icon_info" />
-    </LinearLayout>
+
     <LinearLayout
+
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <ProgressBar
             android:id="@+id/chat_pb"
@@ -65,101 +87,105 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/mmfooter_bg"
+        android:baselineAligned="false"
         android:gravity="bottom"
         android:orientation="horizontal"
-        android:padding="3dip"        
-        android:baselineAligned="false">
-        <ImageButton 
-        	    android:id="@+id/face_select"
-        	    android:layout_width="wrap_content"
-        	    android:layout_height="fill_parent"
-        	    android:background="@null"
-        	    android:minHeight="40dip"
-        	    android:minWidth="0dip" 
-        	    android:paddingBottom="1.0dip" 
-        	    android:src="@drawable/face_select"
-        	    android:textSize="16sp"/>
-        
+        android:padding="3dip">
+
         <ImageButton
-        	    android:id="@+id/file_select"
-        	    android:layout_width="wrap_content"
-        	    android:layout_height="fill_parent"
-        	    android:background="@null"
-        	    android:minHeight="40dip"
-        	    android:minWidth="0dip" 
-        	    android:paddingBottom="1.0dip" 
-        	    android:src="@drawable/file_select"
-        	    android:textSize="16sp" />        
-        
+            android:id="@+id/face_select"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@null"
+            android:minHeight="40dip"
+            android:minWidth="0dip"
+            android:paddingBottom="1.0dip"
+            android:src="@drawable/face_select"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/file_select"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@null"
+            android:minHeight="40dip"
+            android:minWidth="0dip"
+            android:paddingBottom="1.0dip"
+            android:src="@drawable/file_select"
+            android:textSize="16sp" />
+
         <LinearLayout
-            android:orientation="horizontal" 
-        	android:layout_width="0dip" 
-        	android:layout_height="wrap_content" 
-        	android:layout_weight="1.0" >
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:orientation="horizontal">
 
-        	<LinearLayout
-        	    android:layout_width="0dip"
-        	    android:layout_height="fill_parent"
-        	    android:layout_weight="0.58"
-        	    android:orientation="horizontal"
-        	    android:paddingBottom="3.0dip"
-        	    android:paddingTop="5.0dip" >
-            
-		        <EditText
-		            android:id="@+id/chat_content"
-		            android:layout_width="wrap_content"
-		            android:layout_height="fill_parent"
-		            android:layout_gravity="center_vertical"
-		            android:layout_weight="0.76"
-		            android:background="@drawable/chat_edit_focused"
-		            android:inputType="text"
-		            android:maxHeight="80.0dip"
-		            android:minHeight="43.0dip"
-		            android:padding="6dp"
-		            android:singleLine="false"
-		            android:textColor="#FF000000"
-		            android:textSize="16sp" />
-       
-		     </LinearLayout>
-	        <LinearLayout 
-	            android:gravity="bottom" 
-	            android:orientation="vertical" 
-	            android:paddingLeft="7.0dip" 
-	            android:paddingTop="7.0dip" 
-	            android:paddingBottom="7.0dip" 
-	            android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content">
-	            <TextView 
-	                android:gravity="top" 
-	                android:id="@+id/chatting_wordcount_tv" 
-	                android:visibility="gone" 
-	                android:textSize="13.0dip"
-	                android:textColor="#ff000000"
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content" />
-	
-		        <Button
-		            android:id="@+id/chat_sendbtn"
-		            android:layout_width="wrap_content"
-		            android:layout_height="43.0dip"
-		            android:minWidth="50.0dip"
-		            android:padding="6dp"
-		            android:text="发送"
-		            android:background="@drawable/send_button"
-		            android:textColor="#000000"/>
-	
-		    </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.58"
+                android:orientation="horizontal"
+                android:paddingBottom="3.0dip"
+                android:paddingTop="5.0dip">
 
-	    </LinearLayout>
+                <EditText
+                    android:id="@+id/chat_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.76"
+                    android:background="@drawable/chat_edit_focused"
+                    android:inputType="text"
+                    android:maxHeight="80.0dip"
+                    android:minHeight="43.0dip"
+                    android:padding="6dp"
+                    android:singleLine="false"
+                    android:textColor="#FF000000"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:orientation="vertical"
+                android:paddingBottom="7.0dip"
+                android:paddingLeft="7.0dip"
+                android:paddingTop="7.0dip">
+
+                <TextView
+                    android:id="@+id/chatting_wordcount_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:textColor="#ff000000"
+                    android:textSize="13.0dip"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/chat_sendbtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="43.0dip"
+                    android:background="@drawable/send_button"
+                    android:minWidth="50.0dip"
+                    android:padding="6dp"
+                    android:text="发送"
+                    android:textColor="#000000" />
+
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/linearlayout"
         android:layout_width="fill_parent"
         android:layout_height="200dip"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone" >
-        
+        android:visibility="gone">
+
 
         <GridView
             android:id="@+id/gridview"
@@ -169,7 +195,8 @@
             android:gravity="center"
             android:numColumns="auto_fit"
             android:stretchMode="columnWidth" />
-        
-   </LinearLayout>
+
+    </LinearLayout>
+
 
 </LinearLayout>

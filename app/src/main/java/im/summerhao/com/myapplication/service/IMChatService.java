@@ -109,7 +109,7 @@ public class IMChatService extends Service {
                 notice.setStatus(Notice.UNREAD);
                 notice.setNoticeTime(time);
 
-                // 历史记录
+                // 保存消息记录
                 IMMessage newMessage = new IMMessage();
                 newMessage.setMsgType(0);
                 newMessage.setFromSubJid(from);
@@ -117,6 +117,7 @@ public class IMChatService extends Service {
                 newMessage.setTime(time);
                 MessageManager.getInstance(context).saveIMMessage(newMessage);
                 long noticeId = -1;
+
 
                 noticeId = noticeManager.saveNotice(notice);
 
@@ -128,8 +129,11 @@ public class IMChatService extends Service {
                     intent.putExtra(IMMessage.IMMESSAGE_KEY, msg);
                     intent.putExtra("notice", notice);
                     sendBroadcast(intent);
-                    setNotiType(R.drawable.ic_launcher,getResources().getString(R.string.new_message),
+
+
+                    setNotiType(R.drawable.notify_newmessage, getResources().getString(R.string.new_message),
                             notice.getContent(), ChatActivity.class, from);
+
                 }
             }
         }
@@ -169,11 +173,11 @@ public class IMChatService extends Service {
 
     }
 
-    private void showDialog(){
+    private void showDialog() {
         final IncomingFileTransfer infiletransfer = request.accept();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("文件接收")
-                .setMessage("是否接收来自"+request.getRequestor()+"的文件？")
+                .setMessage("是否接收来自" + request.getRequestor() + "的文件？")
                 .setPositiveButton("接收", new DialogInterface.OnClickListener() {
 
                     @Override
@@ -181,8 +185,7 @@ public class IMChatService extends Service {
                         // TODO 自动生成的方法存根
                         try {
                             infiletransfer.recieveFile(file);
-                        }
-                        catch (XMPPException e)	{
+                        } catch (XMPPException e) {
                             showToast("接收失败!");
                             e.printStackTrace();
                         }
@@ -201,38 +204,32 @@ public class IMChatService extends Service {
     }
 
 
-
     /**
-     *
      * 发出Notification的method.
      *
-     * @param iconId
-     *            图标
-     * @param contentTitle
-     *            标题
-     * @param contentText
-     *            你内容
+     * @param iconId       图标
+     * @param contentTitle 标题
+     * @param contentText  你内容
      * @param activity
-     *
      */
 
-    @SuppressWarnings({ "rawtypes" })
+    @SuppressWarnings({"rawtypes"})
     private void setNotiType(int iconId, String contentTitle,
                              String contentText, Class activity, String from) {
-		/*
-		 * 创建新的Intent，作为点击Notification留言条时， 会运行的Activity
+        /*
+         * 创建新的Intent，作为点击Notification留言条时， 会运行的Activity
 		 */
 
         Intent notifyIntent = new Intent(this, activity);
         notifyIntent.putExtra("to", from);
-		/* 创建PendingIntent作为设置递延运行的Activity */
-        PendingIntent appIntent = PendingIntent.getActivity(this, 0,notifyIntent, 0);
+        /* 创建PendingIntent作为设置递延运行的Activity */
+        PendingIntent appIntent = PendingIntent.getActivity(this, 0, notifyIntent, 0);
 		/* 创建Notication，并设置相关参数 */
         Notification myNoti = new Notification();
         // 点击自动消失
         myNoti.flags = Notification.FLAG_AUTO_CANCEL;
 		/* 设置statusbar显示的icon */
-        myNoti.icon = iconId;
+        myNoti.icon = R.drawable.notify_newmessage;
 		/* 设置statusbar显示的文字信息 */
         myNoti.tickerText = contentTitle;
 		/* 设置notification发生时同时发出默认声音 */

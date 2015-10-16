@@ -11,6 +11,7 @@
     <!-- 在SDCard中创建与删除文件权限 -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name = "android.permission.GET_TASKS"/>
 
     <application
         android:name=".activity.IMApplication"
@@ -42,6 +43,14 @@
 
         </activity>
         <activity android:name=".activity.ChatActivity">
+
+        </activity>
+
+        <activity android:name=".activity.FriendInfoActivity">
+
+        </activity>
+
+        <activity android:name=".activity.FileActivity">
 
         </activity>
 

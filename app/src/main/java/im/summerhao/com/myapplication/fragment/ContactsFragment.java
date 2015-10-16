@@ -95,6 +95,7 @@ public class ContactsFragment extends BaseFragment {
         Intent intent = new Intent(mMainActivity, ChatActivity.class);
         intent.putExtra("to", user.getJID());
         intent.putExtra("from", user.getFrom());
+
         startActivity(intent);
     }
 

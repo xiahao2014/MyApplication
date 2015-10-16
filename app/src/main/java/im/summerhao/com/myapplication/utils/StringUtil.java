@@ -1,6 +1,11 @@
 package im.summerhao.com.myapplication.utils;
 
 
+import android.app.Activity;
+import android.app.ActivityManager;
+
+import java.util.List;
+
 import im.summerhao.com.myapplication.manager.XmppConnectionManager;
 
 public class StringUtil {
@@ -142,5 +147,16 @@ public class StringUtil {
 	 */
 	public static String getMonthTime(String allDate) {
 		return allDate.substring(5, 16);
+	}
+
+	public static String getTopActivity(Activity context)
+	{
+		ActivityManager manager = (ActivityManager)context.getSystemService(context.ACTIVITY_SERVICE) ;
+		List<ActivityManager.RunningTaskInfo> runningTaskInfos = manager.getRunningTasks(1) ;
+
+		if(runningTaskInfos != null)
+			return (runningTaskInfos.get(0).topActivity).toString() ;
+		else
+			return null ;
 	}
 }

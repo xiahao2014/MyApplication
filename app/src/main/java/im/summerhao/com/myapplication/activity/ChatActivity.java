@@ -10,11 +10,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -80,16 +83,31 @@ public class ChatActivity extends AChatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat);
         init();
+
+
+
     }
 
     private void init() {
-        titleBack = (ImageView) findViewById(R.id.title_back);
-        titleBack.setOnClickListener(new View.OnClickListener() {
+//        titleBack = (ImageView) findViewById(R.id.title_back);
+//        titleBack.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.title_btn_back);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
 
         // 与谁聊天
         tvChatTitle = (TextView) findViewById(R.id.to_chat_name);
@@ -102,15 +120,15 @@ public class ChatActivity extends AChatActivity {
 
         tvChatTitle.setText(to_name);
 
-        userInfo = (ImageButton) findViewById(R.id.user_info);
-        userInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent();
-//                intent.setClass(context, FriendInfoActivity.class);
-//                startActivity(intent);
-            }
-        });
+//        userInfo = (ImageButton) findViewById(R.id.user_info);
+//        userInfo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                Intent intent = new Intent();
+////                intent.setClass(context, FriendInfoActivity.class);
+////                startActivity(intent);
+//            }
+//        });
 
         //进度条
         pb = (ProgressBar) findViewById(R.id.chat_pb);
@@ -143,10 +161,9 @@ public class ChatActivity extends AChatActivity {
 
             @Override
             public void onClick(View v) {
-                // TODO 自动生成的方法存根
-//                Intent intent = new Intent();
-//                intent.setClass(context, FileActivity.class);
-//                startActivityForResult(intent, 2);
+                Intent intent = new Intent();
+                intent.setClass(context, FileActivity.class);
+                startActivityForResult(intent, 2);
             }
         });
 
@@ -177,6 +194,29 @@ public class ChatActivity extends AChatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.title_right, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_user_info:
+
+                Intent intent = new Intent();
+                intent.setClass(context, FriendInfoActivity.class);
+                intent.putExtra("to", user.getJID());
+                startActivity(intent);
+
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     /**
      * 创建一个表情选择对话框
@@ -210,6 +250,7 @@ public class ChatActivity extends AChatActivity {
             }
         });
     }
+
 
     /**
      * 生成一个表情对话框中的gridview
@@ -261,7 +302,6 @@ public class ChatActivity extends AChatActivity {
         view.setGravity(Gravity.CENTER);
         return view;
     }
-
 
     //覆盖该方法，取得fileactivity的返回值
     @Override
@@ -343,6 +383,7 @@ public class ChatActivity extends AChatActivity {
 
     }
 
+
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -370,7 +411,6 @@ public class ChatActivity extends AChatActivity {
         }
     };
 
-
     @Override
     protected void receiveNewMessage(IMMessage message) {
     }
@@ -392,6 +432,7 @@ public class ChatActivity extends AChatActivity {
         }
         adapter.refreshList(getMessages());
     }
+
 
     private class MessageListAdapter extends BaseAdapter {
 
@@ -491,4 +532,8 @@ public class ChatActivity extends AChatActivity {
         }
     };
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

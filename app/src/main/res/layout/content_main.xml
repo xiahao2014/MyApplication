@@ -4,6 +4,7 @@
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_below="@+id/toolbar"
     tools:showIn="@layout/activity_main">
 
     <include
@@ -13,7 +14,7 @@
 
     <FrameLayout
         android:id="@+id/fragment_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="60dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_layout" />

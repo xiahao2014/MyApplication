@@ -3,8 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:id="@+id/action_user_info"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:orderInCategory="100"
+        android:icon="@drawable/popbar_icon_info"
+        app:showAsAction="always" />
+
+
 </menu>
