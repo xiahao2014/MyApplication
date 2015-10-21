@@ -41,24 +41,6 @@
                 android:src="@drawable/popbar_icon_info" />
         </LinearLayout>-->
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:popupTheme="@style/AppTheme.PopupOverlay">
-
-
-        <TextView
-            android:id="@+id/to_chat_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="zhangsan"
-            android:textColor="@color/blue"
-            android:textSize="22sp" />
-    </android.support.v7.widget.Toolbar>
-
 
     <LinearLayout
 

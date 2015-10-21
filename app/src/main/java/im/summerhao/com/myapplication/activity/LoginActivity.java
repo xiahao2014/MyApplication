@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import im.summerhao.com.myapplication.R;
 import im.summerhao.com.myapplication.manager.XmppConnectionManager;
@@ -52,6 +53,21 @@ public class LoginActivity extends ActivitySupport implements CompoundButton.OnC
         XmppConnectionManager.getInstance().init(loginConfig);
     }
 
+    @Override
+      public void onCreateCustomToolBar(Toolbar toolbar) {
+        super.onCreateCustomToolBar(toolbar);
+        toolbar.showOverflowMenu();
+        View inflate = getLayoutInflater().inflate(R.layout.toobar_button, toolbar);
+        TextView tv = (TextView) inflate.findViewById(R.id.title);
+        tv.setText("登录");
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isExit();
+            }
+        });
+    }
+
     protected void init() {
         loginConfig = getLoginConfig();
         // 如果为自动登录
@@ -60,8 +76,6 @@ public class LoginActivity extends ActivitySupport implements CompoundButton.OnC
             loginTask.execute();
         }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         edt_username = (EditText) findViewById(R.id.ui_username_input);
         edt_pwd = (EditText) findViewById(R.id.ui_password_input);
         rememberCb = (CheckBox) findViewById(R.id.remember);

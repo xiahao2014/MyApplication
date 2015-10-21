@@ -42,12 +42,20 @@ public class FriendInfoActivity extends ActivitySupport {
         friend_name.setText("备注名:"+to_name);
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.title_btn_back);
+
+    }
+
+    @Override
+    public void onCreateCustomToolBar(Toolbar toolbar) {
+        super.onCreateCustomToolBar(toolbar);
+        toolbar.showOverflowMenu();
+        View inflate = getLayoutInflater().inflate(R.layout.toobar_button, toolbar);
+        TextView tv = (TextView) inflate.findViewById(R.id.title);
+        tv.setText("好友信息");
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                isExit();
             }
         });
     }

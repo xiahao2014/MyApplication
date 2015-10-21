@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ import im.summerhao.com.myapplication.bean.ChartHisBean;
 import im.summerhao.com.myapplication.bean.Notice;
 import im.summerhao.com.myapplication.bean.User;
 import im.summerhao.com.myapplication.comm.Constant;
+import im.summerhao.com.myapplication.manager.ContacterManager;
 import im.summerhao.com.myapplication.manager.MessageManager;
 
 public class MessageFragment extends BaseFragment {
@@ -113,22 +115,65 @@ public class MessageFragment extends BaseFragment {
 
             if (Constant.ROSTER_ADDED.equals(action)) {
                 //addUserReceive(user);
+                refreshList();
+
             } else if (Constant.ROSTER_DELETED.equals(action)) {
                 //deleteUserReceive(user);
+                if (user == null)
+                    return;
+                Toast.makeText(context,
+                        (user.getName() == null) ? user.getJID() : user.getName()
+                                + "被删除了", Toast.LENGTH_SHORT).show();
+                refreshList();
+
             } else if (Constant.ROSTER_PRESENCE_CHANGED.equals(action)) {
-                //changePresenceReceive(user);
+                // changePresenceReceive(user);
+
+                if (user == null)
+                    return;
+                if (ContacterManager.contacters.get(user.getJID()) == null)
+                    return;
+                if (!user.isAvailable())
+                    if (ContacterManager.contacters.get(user.getJID()).isAvailable())
+                        Toast.makeText(context,
+                                (user.getName() == null) ? user.getJID() : user
+                                        .getName() + "上线了", Toast.LENGTH_SHORT).show();
+                if (user.isAvailable())
+                    if (!ContacterManager.contacters.get(user.getJID()).isAvailable())
+                        Toast.makeText(context,
+                                (user.getName() == null) ? user.getJID() : user
+                                        .getName() + "下线了", Toast.LENGTH_SHORT).show();
+                refreshList();
+
             } else if (Constant.ROSTER_UPDATED.equals(action)) {
                 //updateUserReceive(user);
+                refreshList();
             } else if (Constant.ROSTER_SUBSCRIPTION.equals(action)) {
-                //subscripUserReceive(intent.getStringExtra(Constant.ROSTER_SUB_FROM));
+                subscripUserReceive(intent.getStringExtra(Constant.ROSTER_SUB_FROM));
             } else if (Constant.NEW_MESSAGE_ACTION.equals(action)) {
                 msgReceive(notice);
             } else if (Constant.ACTION_RECONNECT_STATE.equals(action)) {
-                //boolean isSuccess = intent.getBooleanExtra(Constant.RECONNECT_STATE, true);
-                //handReConnect(isSuccess);
+                boolean isSuccess = intent.getBooleanExtra(Constant.RECONNECT_STATE, true);
+                // handReConnect(isSuccess);
+
+                if (Constant.RECONNECT_STATE_SUCCESS == isSuccess) {
+                    //iv_status.setImageDrawable(getResources().getDrawable(
+                    //       R.drawable.status_online));
+
+                } else if (Constant.RECONNECT_STATE_FAIL == isSuccess) {
+                    //iv_status.setImageDrawable(getResources().getDrawable(
+                    //       R.drawable.status_offline));
+                }
             }
         }
     }
+
+    protected void subscripUserReceive(final String subFrom) {
+        Notice notice = new Notice();
+        notice.setFrom(subFrom);
+        notice.setNoticeType(Notice.CHAT_MSG);
+    }
+
 
     /**
      * 有新消息进来，最近联系人界面更新
@@ -167,6 +212,7 @@ public class MessageFragment extends BaseFragment {
             //noticePaopao.setVisibility(View.GONE);
         }
     }
+
     /**
      * 刷新当前的列表
      */

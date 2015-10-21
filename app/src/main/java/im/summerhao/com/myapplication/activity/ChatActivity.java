@@ -85,7 +85,6 @@ public class ChatActivity extends AChatActivity {
         init();
 
 
-
     }
 
     private void init() {
@@ -96,21 +95,21 @@ public class ChatActivity extends AChatActivity {
 //                finish();
 //            }
 //        });
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.title_btn_back);
-        toolbar.setTitle("");
-        setSupportActionBar(toolbar);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        toolbar.setNavigationIcon(R.drawable.title_btn_back);
+//        toolbar.setTitle("");
+//        setSupportActionBar(toolbar);
+//
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
 
 
         // 与谁聊天
-        tvChatTitle = (TextView) findViewById(R.id.to_chat_name);
+
         user = ContacterManager.getByUserJid(to, XmppConnectionManager.getInstance().getConnection());
         if (null == user) {
             to_name = StringUtil.getUserNameByJid(to);
@@ -118,7 +117,9 @@ public class ChatActivity extends AChatActivity {
             to_name = user.getName() == null ? user.getJID() : user.getName();
         }
 
-        tvChatTitle.setText(to_name);
+        if (tvChatTitle != null) {
+            tvChatTitle.setText(to_name);
+        }
 
 //        userInfo = (ImageButton) findViewById(R.id.user_info);
 //        userInfo.setOnClickListener(new View.OnClickListener() {
@@ -195,6 +196,19 @@ public class ChatActivity extends AChatActivity {
     }
 
     @Override
+    public void onCreateCustomToolBar(Toolbar toolbar) {
+        super.onCreateCustomToolBar(toolbar);
+        toolbar.showOverflowMenu();
+        View inflate = getLayoutInflater().inflate(R.layout.toobar_button, toolbar);
+//        title = (TextView) inflate.findViewById(R.id.title);
+//        title.setText("联系人");
+//        add_group_chat = (ImageButton) inflate.findViewById(R.id.add_group_chat);
+
+        tvChatTitle = (TextView) inflate.findViewById(R.id.title);
+    }
+
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.title_right, menu);
         return true;
@@ -211,8 +225,8 @@ public class ChatActivity extends AChatActivity {
                 intent.setClass(context, FriendInfoActivity.class);
                 intent.putExtra("to", user.getJID());
                 startActivity(intent);
-
                 break;
+
         }
 
         return super.onOptionsItemSelected(item);

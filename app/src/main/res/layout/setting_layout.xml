@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <LinearLayout
+   <!-- <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -22,6 +22,26 @@
             android:padding="10dp"
             android:text="这是设置界面"
             android:textSize="20sp" />
-    </LinearLayout>
+    </LinearLayout>-->
+
+    <EditText
+        android:id="@+id/friend_user"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/friend_nick_name"
+        android:layout_below="@+id/friend_user"
+        android:layout_marginTop="10dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/add_friend"
+        android:layout_below="@+id/friend_nick_name"
+        android:text="添加"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 
 </RelativeLayout>

@@ -14,6 +14,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
@@ -42,12 +43,13 @@ import im.summerhao.com.myapplication.adapter.SignViewAdapter;
 import im.summerhao.com.myapplication.comm.Constant;
 import im.summerhao.com.myapplication.manager.XmppConnectionManager;
 import im.summerhao.com.myapplication.ui.RoundedImageView;
+import im.summerhao.com.myapplication.ui.ToolBarActivity;
 import im.summerhao.com.myapplication.utils.FileUtil;
 
 /**
  * 注册页面
  */
-public class RegisterActivity extends Activity implements View.OnClickListener {
+public class RegisterActivity extends ToolBarActivity implements View.OnClickListener {
 
     // private EditText ui_username_input, ui_password_input;
 
@@ -110,6 +112,15 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         viewPager.setAdapter(adapter);
 
     }
+
+    @Override
+    public void onCreateCustomToolBar(Toolbar toolbar) {
+        super.onCreateCustomToolBar(toolbar);
+        toolbar.showOverflowMenu();
+        TextView textView = (TextView) getLayoutInflater().inflate(R.layout.toobar_button, toolbar).findViewById(R.id.title);
+        textView.setText("注册");
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -327,5 +338,10 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                 }
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

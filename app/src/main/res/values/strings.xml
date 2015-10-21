@@ -73,7 +73,7 @@
 
     <!-- 缺省的服务器配置 -->
     <integer name="xmpp_port">5222</integer>
-    <string name="xmpp_host">192.168.1.101</string>
+    <string name="xmpp_host">192.168.10.34</string>
     <string name="xmpp_service_name">wangxc</string>
 
     <bool name="is_remember">true</bool>
@@ -92,7 +92,7 @@
     <string name="update_stutas">更新状态</string>
     <string name="new_login">重新登录</string>
     <string name="exit_login">退出</string>
-    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_register">注册</string>
     <string name="friend_info">好友信息</string>
 
 </resources>

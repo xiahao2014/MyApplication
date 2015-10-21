@@ -18,17 +18,28 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-    <style name="AppTheme" parent="AppTheme.Base">
+    <!--<style name="AppTheme" parent="AppTheme.Base">-->
+
+    <!--</style>-->
+
+    <!--<style name="AppTheme.Base" parent="Theme.AppCompat">-->
+        <!--<item name="windowActionBar">false</item>-->
+        <!--<item name="android:windowNoTitle">true</item>-->
+
+        <!--<item name="colorPrimary">@color/accent_material_dark</item>-->
+        <!--<item name="colorPrimaryDark">@color/accent_material_light</item>-->
+        <!--<item name="android:windowBackground">@color/dim_foreground_material_dark</item>-->
+    <!--</style>-->
+
+
+    <!-- Base application theme. -->
+    <style name="AppThemeParent" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@android:color/holo_red_light</item>
 
     </style>
-
-    <style name="AppTheme.Base" parent="Theme.AppCompat">
-        <item name="windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
-
-        <item name="colorPrimary">@color/accent_material_dark</item>
-        <item name="colorPrimaryDark">@color/accent_material_light</item>
-        <item name="android:windowBackground">@color/dim_foreground_material_dark</item>
+    <style name="AppTheme" parent="AppThemeParent">
+        <!-- Customize your theme here. -->
     </style>
 
 

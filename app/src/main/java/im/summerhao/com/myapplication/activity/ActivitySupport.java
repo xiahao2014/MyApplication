@@ -15,7 +15,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
-import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
@@ -24,8 +24,9 @@ import im.summerhao.com.myapplication.comm.Constant;
 import im.summerhao.com.myapplication.mode.LoginConfig;
 import im.summerhao.com.myapplication.service.IMChatService;
 import im.summerhao.com.myapplication.service.IMContactService;
+import im.summerhao.com.myapplication.ui.ToolBarActivity;
 
-public class ActivitySupport extends AppCompatActivity implements IActivitySupport {
+public class ActivitySupport extends ToolBarActivity implements IActivitySupport {
 
 
     protected Context context = null;
@@ -44,6 +45,15 @@ public class ActivitySupport extends AppCompatActivity implements IActivitySuppo
         imApplication = (IMApplication) getApplication();
         imApplication.addActivity(this);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

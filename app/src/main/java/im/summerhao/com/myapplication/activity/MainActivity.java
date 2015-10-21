@@ -7,13 +7,17 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import org.jivesoftware.smackx.ServiceDiscoveryManager;
 import org.jivesoftware.smackx.packet.DiscoverItems;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import im.summerhao.com.myapplication.R;
@@ -21,25 +25,17 @@ import im.summerhao.com.myapplication.bean.ChartHisBean;
 import im.summerhao.com.myapplication.comm.Constant;
 import im.summerhao.com.myapplication.fragment.BaseFragment;
 import im.summerhao.com.myapplication.manager.ContacterManager;
-import im.summerhao.com.myapplication.manager.XmppConnectionManager;
 import im.summerhao.com.myapplication.ui.BottomControlPanel;
 
 public class MainActivity extends ActivitySupport implements BottomControlPanel.BottomPanelCallback {
 
 
-    private Toolbar toolbar;
     BottomControlPanel bottomPanel = null;
     public static String currFragTag = "";
-
     private FragmentManager fragmentManager = null;
     private FragmentTransaction fragmentTransaction = null;
-
-    private List<ChartHisBean> inviteNotices = new ArrayList<ChartHisBean>();
-    private List<DiscoverItems.Item> chatRoomList = new ArrayList<DiscoverItems.Item>();
-    private List<String> groupNames;
-    private List<ContacterManager.MRosterGroup> rGroups;
-    private List<String> roomNames = new ArrayList<String>();
-    private MainActivity mMainActivity;
+    private TextView title;
+    private ImageButton add_group_chat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +55,6 @@ public class MainActivity extends ActivitySupport implements BottomControlPanel.
             bottomPanel.initBottomPanel();
             bottomPanel.setBottomCallback(this);
         }
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setLogo(R.drawable.ic_launcher);
-        toolbar.setTitle(Constant.FRAGMENT_FLAG_CONTACTS);
-        setSupportActionBar(toolbar);
-
     }
 
 
@@ -165,28 +156,50 @@ public class MainActivity extends ActivitySupport implements BottomControlPanel.
         switchFragment(tag);
 
     }
+    @Override
+    public void onCreateCustomToolBar(Toolbar toolbar) {
+        super.onCreateCustomToolBar(toolbar);
+        toolbar.showOverflowMenu();
+        View inflate = getLayoutInflater().inflate(R.layout.toobar_button, toolbar);
+        title = (TextView) inflate.findViewById(R.id.title);
+        title.setText("联系人");
+        add_group_chat = (ImageButton) inflate.findViewById(R.id.add_group_chat);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isExit();
+            }
+        });
+    }
+
 
     @Override
     public void onBottomPanelClick(int itemId) {
         String tag = "";
         if ((itemId & Constant.BTN_FLAG_MESSAGE) != 0) {
             tag = Constant.FRAGMENT_FLAG_MESSAGE;
-            toolbar.setTitle(Constant.FRAGMENT_FLAG_MESSAGE);
-            setSupportActionBar(toolbar);
+            title.setText(Constant.FRAGMENT_FLAG_MESSAGE);
+            add_group_chat.setVisibility(View.VISIBLE);
+            //toolbar.setTitle(Constant.FRAGMENT_FLAG_MESSAGE);
+            //setSupportActionBar(toolbar);
         } else if ((itemId & Constant.BTN_FLAG_CONTACTS) != 0) {
             tag = Constant.FRAGMENT_FLAG_CONTACTS;
-            toolbar.setTitle(Constant.FRAGMENT_FLAG_CONTACTS);
-            setSupportActionBar(toolbar);
+            title.setText(Constant.FRAGMENT_FLAG_CONTACTS);
+            add_group_chat.setVisibility(View.INVISIBLE);
+            //toolbar.setTitle(Constant.FRAGMENT_FLAG_CONTACTS);
+            //setSupportActionBar(toolbar);
         } else if ((itemId & Constant.BTN_FLAG_NEWS) != 0) {
             tag = Constant.FRAGMENT_FLAG_NEWS;
-
-            toolbar.setTitle(Constant.FRAGMENT_FLAG_NEWS);
-            setSupportActionBar(toolbar);
+            title.setText(Constant.FRAGMENT_FLAG_NEWS);
+            add_group_chat.setVisibility(View.INVISIBLE);
+           // toolbar.setTitle(Constant.FRAGMENT_FLAG_NEWS);
+           // setSupportActionBar(toolbar);
         } else if ((itemId & Constant.BTN_FLAG_SETTING) != 0) {
             tag = Constant.FRAGMENT_FLAG_SETTING;
-
-            toolbar.setTitle(Constant.FRAGMENT_FLAG_SETTING);
-            setSupportActionBar(toolbar);
+            title.setText(Constant.FRAGMENT_FLAG_SETTING);
+            add_group_chat.setVisibility(View.INVISIBLE);
+           // toolbar.setTitle(Constant.FRAGMENT_FLAG_SETTING);
+           // setSupportActionBar(toolbar);
         }
         setTabSelection(tag); //切换Fragment
     }

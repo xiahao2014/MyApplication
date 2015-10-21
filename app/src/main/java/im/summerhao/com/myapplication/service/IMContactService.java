@@ -19,6 +19,8 @@ import org.jivesoftware.smack.packet.Presence;
 import java.util.Calendar;
 import java.util.Collection;
 
+import im.summerhao.com.myapplication.R;
+import im.summerhao.com.myapplication.activity.MyNoticeActivity;
 import im.summerhao.com.myapplication.bean.Notice;
 import im.summerhao.com.myapplication.bean.User;
 import im.summerhao.com.myapplication.comm.Constant;
@@ -125,10 +127,9 @@ public class IMContactService extends Service {
                     intent.putExtra("notice", notice);
                     sendBroadcast(intent);
 
-
-//                    setNotiType(R.drawable.im, "好友请求",
-//                            StringUtil.getUserNameByJid(packet.getFrom())
-//                                    + "申请加您为好友", MyNoticeActivity.class);
+                    setNotiType(R.drawable.ic_launcher, "好友请求",
+                            StringUtil.getUserNameByJid(packet.getFrom())
+                                    + "申请加您为好友", MyNoticeActivity.class);
 
                 }
 
